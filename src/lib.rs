@@ -1,5 +1,6 @@
 pub mod category;
 mod err;
+pub mod user;
 
 pub use err::Error;
 

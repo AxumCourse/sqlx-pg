@@ -1,0 +1,26 @@
+## 新建
+POST http://127.0.0.1:9527/user
+Content-Type: application/json
+
+{
+    "username":"foo"
+}
+
+## 修改（使用连接池）
+PUT http://127.0.0.1:9527/user
+Content-Type: application/json
+
+{
+    "id":1,
+    "username":"foo"
+}
+
+## 修改（使用事务）
+PATCH  http://127.0.0.1:9527/user
+Content-Type: application/json
+
+{
+    "id":1,
+    "username":"foo"
+}
+

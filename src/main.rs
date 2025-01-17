@@ -1,8 +1,11 @@
 use std::sync::Arc;
 
-use axum::{routing::get, Router};
+use axum::{
+    routing::{get, post},
+    Router,
+};
 use sqlx::postgres::PgPoolOptions;
-use sqlx_pg::{category, AppState, ArcAppState};
+use sqlx_pg::{category, user, AppState, ArcAppState};
 use tokio::net::TcpListener;
 
 #[tokio::main]
@@ -35,7 +38,15 @@ fn router_init(state: ArcAppState) -> Router {
             get(category::handler::find).delete(category::handler::delete),
         );
 
+    let user_router = Router::new().route(
+        "/",
+        post(user::handler::register)
+            .put(user::handler::edit)
+            .patch(user::handler::edit_by_tx),
+    );
+
     Router::new()
         .nest("/category", category_router)
+        .nest("/user", user_router)
         .with_state(state)
 }
