@@ -1,0 +1,31 @@
+## 新建
+POST http://127.0.0.1:9527/category
+Content-Type: application/json
+
+{
+    "name":"Rust"
+}
+
+
+## 修改
+
+PUT http://127.0.0.1:9527/category
+Content-Type: application/json
+
+{
+    "id":1,
+    "name":"Axum"
+}
+
+## 列表
+GET http://127.0.0.1:9527/category
+Content-Type: application/json
+
+## 查找
+GET http://127.0.0.1:9527/category/1
+Content-Type: application/json
+
+## 删除
+DELETE http://127.0.0.1:9527/category/1
+Content-Type: application/json
+
