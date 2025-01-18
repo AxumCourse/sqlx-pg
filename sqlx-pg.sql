@@ -19,3 +19,9 @@ CREATE TABLE IF NOT EXISTS "topics"(
     "title" VARCHAR(50) NOT NULL,
     "meta" JSONB NOT NULL DEFAULT '{}'
 );
+
+CREATE UNLOGGED TABLE IF NOT EXISTS "sessions"(
+    "id" SERIAL PRIMARY KEY,
+    "token" CHAR(20) NOT NULL,
+    "data" HSTORE NOT NULL
+);

@@ -1,0 +1,23 @@
+# @name create
+POST http://127.0.0.1:9527/session
+Content-Type: application/json
+
+{
+   "data":{
+    "email":"team@axum.rs",
+    "user_agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/130.0.0.0 Safari/537.36",
+    "ip":"12.34.56.78"
+    }
+}
+
+### 根据令牌查找
+
+@token = {{create.response.body.$}}
+GET http://127.0.0.1:9527/session/{{token}}
+Content-Type: application/json
+
+### 根据邮箱查找
+
+GET http://127.0.0.1:9527/session/email/team@axum.rs
+Content-Type: application/json
+

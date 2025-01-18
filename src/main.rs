@@ -5,7 +5,7 @@ use axum::{
     Router,
 };
 use sqlx::postgres::PgPoolOptions;
-use sqlx_pg::{category, post as post_mod, topic, user, AppState, ArcAppState};
+use sqlx_pg::{category, post as post_mod, session, topic, user, AppState, ArcAppState};
 use tokio::net::TcpListener;
 
 #[tokio::main]
@@ -59,10 +59,16 @@ fn router_init(state: ArcAppState) -> Router {
             get(topic::handler::increment_views),
         );
 
+    let session_router = Router::new()
+        .route("/", post(session::handler::create))
+        .route("/{token}", get(session::handler::find_by_token))
+        .route("/email/{email}", get(session::handler::find_by_email));
+
     Router::new()
         .nest("/category", category_router)
         .nest("/user", user_router)
         .nest("/post", post_router)
         .nest("/topic", topic_router)
+        .nest("/session", session_router)
         .with_state(state)
 }

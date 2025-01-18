@@ -1,6 +1,7 @@
 pub mod category;
 mod err;
 pub mod post;
+pub mod session;
 pub mod topic;
 pub mod user;
 
