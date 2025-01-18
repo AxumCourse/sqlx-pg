@@ -9,6 +9,10 @@ Content-Type: application/json
 
 
 ## 列表
+GET http://127.0.0.1:9527/topic
+Content-Type: application/json
+
+## 带过滤条件的列表
 GET http://127.0.0.1:9527/topic?title=操作&author=axum
 Content-Type: application/json
 
