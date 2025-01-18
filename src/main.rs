@@ -5,12 +5,15 @@ use axum::{
     Router,
 };
 use sqlx::postgres::PgPoolOptions;
-use sqlx_pg::{category, post as post_mod, session, topic, user, AppState, ArcAppState};
+use sqlx_pg::{category, chat, post as post_mod, session, topic, user, AppState, ArcAppState};
 use tokio::net::TcpListener;
 
 #[tokio::main]
 async fn main() -> anyhow::Result<()> {
     let dsn = std::env::var("DATABASE_URL").unwrap_or("".into());
+
+    tokio::spawn(chat::model::notify_process(dsn.clone()));
+
     let pool = PgPoolOptions::new()
         .max_connections(5)
         .connect(&dsn)
@@ -64,11 +67,14 @@ fn router_init(state: ArcAppState) -> Router {
         .route("/{token}", get(session::handler::find_by_token))
         .route("/email/{email}", get(session::handler::find_by_email));
 
+    let chat_router = Router::new().route("/", post(chat::handler::login));
+
     Router::new()
         .nest("/category", category_router)
         .nest("/user", user_router)
         .nest("/post", post_router)
         .nest("/topic", topic_router)
         .nest("/session", session_router)
+        .nest("/chat", chat_router)
         .with_state(state)
 }

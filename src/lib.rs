@@ -1,4 +1,5 @@
 pub mod category;
+pub mod chat;
 mod err;
 pub mod post;
 pub mod session;

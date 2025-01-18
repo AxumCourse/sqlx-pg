@@ -1,0 +1,7 @@
+## 登录
+POST http://127.0.0.1:9527/chat
+Content-Type: application/json
+
+{
+    "nickname":"AXUM中文网"
+}
