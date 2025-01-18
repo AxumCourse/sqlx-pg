@@ -1,0 +1,31 @@
+## 新建
+POST http://127.0.0.1:9527/topic
+Content-Type: application/json
+
+{
+    "title":"SQLX 操作 PG JSON",
+    "author":"AXUM中文网"
+}
+
+
+## 列表
+GET http://127.0.0.1:9527/topic?title=操作&author=axum
+Content-Type: application/json
+
+
+## 元信息
+GET http://127.0.0.1:9527/topic/1/meta
+Content-Type: application/json
+
+
+## 作者
+GET http://127.0.0.1:9527/topic/1/author
+Content-Type: application/json
+
+## 查看次数
+GET http://127.0.0.1:9527/topic/1/views
+Content-Type: application/json
+
+## 增加查看次数
+GET http://127.0.0.1:9527/topic/1/increment-views
+Content-Type: application/json

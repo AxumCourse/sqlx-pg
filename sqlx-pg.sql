@@ -13,3 +13,9 @@ CREATE TABLE IF NOT EXISTS "posts"(
     "content" VARCHAR(255) NOT NULL,
     "images" VARCHAR(50)[] NOT NULL DEFAULT '{}'::VARCHAR(50)[]
 );
+
+CREATE TABLE IF NOT EXISTS "topics"(
+    "id" SERIAL PRIMARY KEY,
+    "title" VARCHAR(50) NOT NULL,
+    "meta" JSONB NOT NULL DEFAULT '{}'
+);

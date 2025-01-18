@@ -17,3 +17,4 @@ sqlx = { version = "0.8", features = ["runtime-tokio", "postgres", "json"] }
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
 anyhow = "1"
+serde_json = { version = "1", features = ["raw_value"] }
