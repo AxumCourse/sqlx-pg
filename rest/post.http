@@ -1,0 +1,12 @@
+## 新建
+POST http://127.0.0.1:9527/post
+Content-Type: application/json
+
+{
+    "content":"sqlx 操作 postgreSQL",
+    "images":["foo.png", "bar.png", "foobar.jpg"]
+}
+
+## 查找
+GET http://127.0.0.1:9527/post/1
+Content-Type: application/json

@@ -7,3 +7,9 @@ CREATE TABLE IF NOT EXISTS "users"(
     "id" SERIAL PRIMARY KEY,
     "username" VARCHAR(50) NOT NULL UNIQUE
 );
+
+CREATE TABLE IF NOT EXISTS "posts"(
+    "id" SERIAL PRIMARY KEY,
+    "content" VARCHAR(255) NOT NULL,
+    "images" VARCHAR(50)[] NOT NULL DEFAULT '{}'::VARCHAR(50)[]
+);
